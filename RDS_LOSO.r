@@ -44,7 +44,7 @@ library(ggplot2)
 library(ggrepel)
 
 
-data <- read.csv("data/sample_deidentified_data.csv")
+data <- read.csv("sample_deidentified_data.csv")
 
 x = which(data[,"Department"] == 1)
 Kedougou_data = data[x,]
@@ -484,8 +484,6 @@ estimate_by_wave <- function(df, outcome = "victim", N_hcg = 30000,
 }
 
 
-set.seed(123)
-N_hcg <- 30000
 method_levels <- c("Observed", "SH", "VH", "HCG", "NE4NS")
 
 method_colors <- c(
@@ -586,7 +584,6 @@ one_chain_est <- function(df_chain, outcome="victim", N_hcg = 30000){
   )
 }
 
-N_hcg <- 10000
 
 seed_results_all <- data %>%
   mutate(seed = as.character(seed)) %>%
@@ -738,9 +735,6 @@ loso_by_seed <- function(df, stratum_name,
 }
 
 ## Run LOSO for All / Kedougou / Saraya
-set.seed(123)
-N_hcg <- 10000
-
 loso_all <- loso_by_seed(data, "All regions", N_hcg = N_hcg)
 
 loso_k <- loso_by_seed(data %>% filter(Department == 1),
